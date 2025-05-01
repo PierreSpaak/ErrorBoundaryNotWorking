@@ -9,13 +9,21 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div style="margin-top: 3rem;">
-    <InputFile OnChange="LoadFile" />
+    <ul>
+        Blazor InputFile
+        <li style="margin-bottom: 1rem;">Asynchronous <InputFile OnChange="async (e) => await InputFileChangedAsync(e)" /></li>
+        <li style="margin-bottom: 1rem;">Synchronous <InputFile OnChange="InputFileChanged" /></li>
+    </ul>
+
+    <ul>
+        Html input
+        <li style="margin-bottom: 1rem;">Asynchronous <input type="file" @onchange="async (e) => await InputChangedAsync(e)" /></li>
+        <li style="margin-bottom: 1rem;">Synchronous <input type="file" @onchange="InputChanged" /></li>
+    </ul>
 </div>
 
 @code {
     private int currentCount = 0;
-
-    long maxFileSize = 2 * 1024 * 1024; // 2MB
 
     private void IncrementCount()
     {
@@ -26,8 +34,23 @@
         }
     }
 
-    private async Task LoadFile(InputFileChangeEventArgs e)
+    private async Task InputFileChangedAsync(InputFileChangeEventArgs e)
     {
-        throw new Exception(DateTime.Now.ToString()); // this Exception is silent
+        throw new Exception("InputFileChangedAsync");
+    }
+
+    private void InputFileChanged(InputFileChangeEventArgs e)
+    {
+        throw new Exception("InputFileChanged");
+    }
+
+    private async Task InputChangedAsync(ChangeEventArgs e)
+    {
+        throw new Exception("InputChangedAsync");
+    }
+
+    private void InputChanged(ChangeEventArgs e)
+    {
+        throw new Exception("InputChanged");
     }
 }
