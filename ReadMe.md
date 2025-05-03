@@ -3,4 +3,4 @@ This sample project demonstrates that Exceptions are not always caught by ErrorB
 This project was created from scratch using Blazor Web App template, interactiveServer, Global
 I simply modified the Counter.razor and wrapped the router in an ErrorBoundary.
 - The Exception thrown when clicking the button is caught by the ErrorBoundary as expected.
-- The Exception thrown when a file is selected just disappear !?
+- The Exception thrown shows up in the browser console but is not caught by ErrorBoundary !?
