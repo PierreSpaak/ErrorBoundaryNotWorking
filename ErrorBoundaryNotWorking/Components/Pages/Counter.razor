@@ -9,7 +9,12 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div style="margin-top: 3rem;">
-    <InputFile OnChange="LoadFile" />
+    @*<div style="margin-top: 3rem;">Async <InputFile @onchange="async (e) => await LoadFileAsync(e)" /></div>*@
+    <div style="margin-top: 3rem;">Synchronous <InputFile OnChange="@LoadFile" /></div>
+    @*<div style="margin-top: 3rem;">Synchronous <input type="file" @onchange="() => LoadFileAsync(e)" /></div>*@
+
+    @*<div style="margin-top: 3rem;">Synchronous <input type="file" onchange="@LoadFile" /></div>*@
+
 </div>
 
 @code {
@@ -26,8 +31,13 @@
         }
     }
 
-    private async Task LoadFile(InputFileChangeEventArgs e)
+    private async Task LoadFileAsync(InputFileChangeEventArgs e)
     {
-        throw new Exception(DateTime.Now.ToString()); // this Exception is silent
+        throw new Exception();
+    }
+
+    private void LoadFile(InputFileChangeEventArgs e)
+    {
+        throw new Exception();
     }
 }
