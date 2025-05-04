@@ -1,4 +1,4 @@
-﻿<ErrorBoundary>
+﻿<ErrorBoundary @ref="errorBoundary">
     <ChildContent>
         <Router AppAssembly="typeof(Program).Assembly">
             <Found Context="routeData">
@@ -7,8 +7,19 @@
             </Found>
         </Router>
     </ChildContent>
-    <ErrorContent>
-        Error
+    <ErrorContent Context="ctx">
+        <p>Error</p>
+        <p>@ctx.Message</p>
+        <p>@ctx.ToString()</p>
+
     </ErrorContent>
 </ErrorBoundary>
 
+@code
+{
+    private ErrorBoundary errorBoundary;
+    private void HandleError(Exception exception)
+    {
+        Console.WriteLine($"Error: {exception.Message}");
+    }
+}
