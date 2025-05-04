@@ -1,6 +1,5 @@
-﻿### Where did my Exception ended up?
-This sample project demonstrates that Exceptions are not always caught by ErrorBoundary and can just fail silently.
+﻿### Exceptions not thrown and handled by ErrorBoundary the same way when using <InputFile> and <input type="file">
 This project was created from scratch using Blazor Web App template, interactiveServer, Global
-I simply modified the Counter.razor and wrapped the router in an ErrorBoundary.
-- The Exception thrown when clicking the button is caught by the ErrorBoundary as expected.
-- The Exception thrown shows up in the browser console but is not caught by ErrorBoundary !?
+I wrapped the router in an ErrorBoundary and modified the Counter.razor to throw exceptions using <InputFile> and <input type="file">
+- Exceptions thrown by <InputFile> are reflected in the browser console but never reach the ErrorBoundary
+- Exceptions thrown by <input type="file"> are not reflected in the browser console but do reach the ErrorBoundary
